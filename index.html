@@ -929,6 +929,64 @@
       }
     }
 
+
+    /* ===== V8 final requested fixes ===== */
+    .logo-slot{
+      border-radius:999px !important;
+      overflow:hidden !important;
+      width:clamp(46px,4.6vw,64px) !important;
+      height:clamp(46px,4.6vw,64px) !important;
+    }
+    .logo-slot img{ border-radius:999px !important; padding:4px !important; }
+    .hero-metrics{
+      justify-content:center !important;
+      align-items:center !important;
+      max-width:880px;
+      margin-left:auto !important;
+      margin-right:auto !important;
+      gap:clamp(10px,1.2vw,16px) !important;
+    }
+    .hero-chip{ font-size:clamp(12px,1.05vw,15px) !important; padding:12px 16px !important; }
+    .global-video{
+      width:clamp(325px, 23vw, 450px) !important;
+      padding:4px !important;
+      border-radius:clamp(26px, 2.8vw, 42px) !important;
+      background:linear-gradient(145deg,#111b29 0%, #03060a 100%) !important;
+      border:1px solid rgba(233,196,106,.62) !important;
+      box-shadow:0 30px 90px rgba(0,0,0,.70), 0 0 76px rgba(233,196,106,.21), inset 0 0 0 1px rgba(255,255,255,.05) !important;
+    }
+    .global-video::before{ top:8px !important; width:23% !important; height:6px !important; opacity:.52 !important; }
+    .global-video-screen{ border-radius:calc(clamp(24px, 2.45vw, 38px) - 4px) !important; background:#000 !important; overflow:hidden !important; }
+    #vimeoGlobalVideo{
+      position:absolute !important; top:50% !important; left:50% !important;
+      width:100% !important; height:100% !important; max-width:none !important;
+      transform:translate(-50%, -50%) scale(1.02) !important;
+      transform-origin:center center !important; background:#000 !important; border:0 !important; display:block !important;
+    }
+    .auto-stack{ min-height:min(54vh,520px) !important; }
+    .auto-card{ transition: opacity .95s ease, transform .95s cubic-bezier(.22,1,.36,1), filter .95s ease !important; will-change:opacity, transform; }
+    .auto-stack::after{ display:none !important; }
+    .auto-card.is-active{ opacity:1 !important; width:78% !important; height:68% !important; left:4% !important; top:3% !important; z-index:6 !important; transform:translate(0,0) scale(1) rotate(-2deg) !important; filter:saturate(1.03) brightness(1) !important; }
+    .auto-card.is-next{ opacity:.72 !important; width:62% !important; height:52% !important; right:3% !important; top:22% !important; z-index:5 !important; transform:translate(0,0) scale(.96) rotate(4deg) !important; filter:saturate(.88) brightness(.82) !important; }
+    .auto-card.is-third{ opacity:.52 !important; width:62% !important; height:45% !important; left:24% !important; bottom:2% !important; z-index:4 !important; transform:translate(0,0) scale(.92) rotate(2deg) !important; filter:saturate(.8) brightness(.72) !important; }
+    .clean-gallery{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,1.35vw,18px); max-height:64vh; }
+    .clean-gallery .photo-card{ aspect-ratio:4/3; min-height:0; border-radius:22px; padding:7px; }
+    .clean-gallery .photo-card img{ border-radius:16px; }
+    .support-card .stat-number{ white-space:normal !important; font-size:clamp(16px,1.45vw,22px) !important; line-height:1.18 !important; letter-spacing:-.02em !important; margin:6px 0 8px 0 !important; overflow-wrap:break-word !important; }
+    .support-card .timeline-description{ font-size:clamp(11px,.95vw,14px) !important; line-height:1.34 !important; }
+    .s22-photo-stack{ min-height:min(42vh,390px) !important; }
+    .s22-photo-stack .auto-card.is-active{ width:72% !important; height:62% !important; }
+    .s22-photo-stack .auto-card.is-next{ width:58% !important; height:50% !important; }
+    .s22-photo-stack .auto-card.is-third{ width:58% !important; height:42% !important; }
+    .training-impact{ max-width:1120px; margin:0 auto; }
+    .training-impact .stats-grid{ grid-template-columns:repeat(3,minmax(0,1fr)) !important; }
+    @media (min-width:1160px){
+      .panel-inner{ max-width:min(1210px, calc(100vw - (2 * var(--gutter)) - clamp(390px,27vw,520px))) !important; margin-left:clamp(390px,27vw,520px) !important; margin-right:auto !important; }
+      .panel-inner.narrow{ max-width:min(1020px, calc(100vw - (2 * var(--gutter)) - clamp(390px,27vw,520px))) !important; }
+    }
+    @media (max-width:1159px){ .global-video{ width:clamp(130px,18vw,190px) !important; padding:3px !important; top:auto !important; bottom:70px !important; left:10px !important; opacity:.78 !important; } .clean-gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); max-height:none; } .training-impact .stats-grid{ grid-template-columns:1fr !important; } }
+    @media (max-width:740px){ .logo-slot{ width:42px !important; height:42px !important; } .global-video{ width:92px !important; opacity:.60 !important; left:8px !important; bottom:64px !important; padding:2px !important; } .clean-gallery{ grid-template-columns:1fr; } }
+
   </style>
 </head>
 
@@ -937,8 +995,9 @@
     <div class="global-video-screen">
       <iframe
         id="vimeoGlobalVideo"
-        title="MTWTU LAW HUB video"
-        allow="autoplay; fullscreen; picture-in-picture"
+        src="https://player.vimeo.com/video/1186197729?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&dnt=1"
+        title="MLH vimeo"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
         allowfullscreen
         loading="eager"
         referrerpolicy="strict-origin-when-cross-origin"></iframe>
@@ -1107,7 +1166,7 @@
             <div class="grid-3" style="margin-top:var(--space-2);">
               <div class="stat-card"><div class="platform-icon">📍</div><div class="stat-number js-counter" data-target="19">0</div><div class="stat-label">запитів опрацьовано особисто в офісі ПРМТУ в Одесі</div></div>
               <div class="stat-card"><div class="platform-icon">🌍</div><div class="stat-number js-counter" data-target="8">0</div><div class="stat-label">запитів опрацьовано за кордоном</div></div>
-              <div class="stat-card"><div class="platform-icon">🇧🇬</div><div class="stat-number js-counter" data-target="20">0</div><div class="stat-label">запитів опрацьовано під час зустрічі з моряками у м. Варна, Болгарія</div></div>
+              <div class="stat-card"><div class="platform-icon">🌍</div><div class="stat-number js-counter" data-target="20" data-suffix="+">0</div><div class="stat-label">понад 20 запитів опрацьовано під час зустрічей у Варні (Болгарія) та Кишиневі (Молдова)</div></div>
             </div>
           </div>
         </article></div>
@@ -1149,30 +1208,19 @@
       <!-- 07 / VIDEO -->
       <section class="section" id="s7" data-nav="Вертикальне відео">
         <div class="wrap"><article class="slide alt compact-slide" data-watermark="1" data-lighthouse="1">
-          <div class="panel-inner">
+          <div class="panel-inner narrow">
             <div class="slide-header">
               <h2 class="slide-title">Право у форматі, який дивляться</h2>
-              <p class="slide-subtitle">Вертикальне відео працює на всіх слайдах як жива демонстрація MTWTU LAW HUB.</p>
+              <p class="slide-subtitle">Короткі правові відео стали одним із головних інструментів довіри, пояснення складних тем і першого контакту з людьми.</p>
             </div>
-            <div class="grid-2">
-              <div class="glass-card">
-                <p class="eyebrow">Чому це спрацювало</p>
-                <ul class="bullet-list">
-                  <li data-icon="👀">Людина бачить коротке пояснення саме тоді, коли їй потрібна відповідь.</li>
-                  <li data-icon="🧠">Складна юридична тема стає зрозумілою за 30–60 секунд.</li>
-                  <li data-icon="✉️">Після перегляду люди пишуть у Direct, Messenger або звертаються через інші канали.</li>
-                  <li data-icon="🤝">Так формується довіра до Профспілки як до реального захисника.</li>
-                </ul>
-              </div>
-              <div class="glass-card premium-note">
-                <p class="eyebrow">Відео з Vimeo</p>
-                <p class="content-text">Постійний вертикальний блок ліворуч транслює ролик з Vimeo поверх усієї презентації — як доказ того, що LAW HUB не лише консультує, а й говорить з людьми сучасною мовою.</p>
-                <div class="tag-row" style="justify-content:flex-start;">
-                  <span class="tag gold">Reels</span>
-                  <span class="tag gold">Shorts</span>
-                  <span class="tag gold">правові пояснення</span>
-                </div>
-              </div>
+            <div class="glass-card">
+              <p class="eyebrow">Чому це спрацювало</p>
+              <ul class="bullet-list">
+                <li data-icon="👀">Людина бачить коротке пояснення саме тоді, коли їй потрібна відповідь.</li>
+                <li data-icon="🧠">Складна юридична тема стає зрозумілою за 30–60 секунд.</li>
+                <li data-icon="✉️">Після перегляду люди пишуть у Direct, Messenger або звертаються через інші канали.</li>
+                <li data-icon="🤝">Так формується довіра до Профспілки як до реального захисника.</li>
+              </ul>
             </div>
           </div>
         </article></div>
@@ -1336,15 +1384,6 @@
                 <div class="auto-card is-next" data-full="4.JPG"><img src="4.JPG" alt="Очна правова підтримка" onerror="markMissing(this)"><span class="caption">Очна правова підтримка</span></div>
                 <div class="auto-card is-third" data-full="6.JPG"><img src="6.JPG" alt="Індивідуальна консультація" onerror="markMissing(this)"><span class="caption">Індивідуальна консультація</span></div>
                 <div class="auto-card" data-full="7.JPG"><img src="7.JPG" alt="Після консультації — конкретний результат" onerror="markMissing(this)"><span class="caption">Після консультації — конкретний результат</span></div>
-                <div class="auto-card" data-full="8.JPG"><img src="8.JPG" alt="Живий діалог і довіра" onerror="markMissing(this)"><span class="caption">Живий діалог і довіра</span></div>
-                <div class="auto-card" data-full="9.JPG"><img src="9.JPG" alt="Робота з документами" onerror="markMissing(this)"><span class="caption">Робота з документами</span></div>
-                <div class="auto-card" data-full="10.JPG"><img src="10.JPG" alt="Практичне консультування" onerror="markMissing(this)"><span class="caption">Практичне консультування</span></div>
-                <div class="auto-card" data-full="11.JPEG"><img src="11.JPEG" alt="Супровід моряків" onerror="markMissing(this)"><span class="caption">Супровід моряків</span></div>
-                <div class="auto-card" data-full="12.JPEG"><img src="12.JPEG" alt="Юридична підтримка в офісі" onerror="markMissing(this)"><span class="caption">Юридична підтримка в офісі</span></div>
-                <div class="auto-card" data-full="13.JPEG"><img src="13.JPEG" alt="Командна робота" onerror="markMissing(this)"><span class="caption">Командна робота</span></div>
-                <div class="auto-card" data-full="14.JPEG"><img src="14.JPEG" alt="Консультація у форматі 1:1" onerror="markMissing(this)"><span class="caption">Консультація у форматі 1:1</span></div>
-                <div class="auto-card" data-full="20.JPG"><img src="20.JPG" alt="Правова обізнаність курсантів" onerror="markMissing(this)"><span class="caption">Правова обізнаність курсантів</span></div>
-                <div class="auto-card" data-full="21.jpg"><img src="21.jpg" alt="Зустрічі та пояснення" onerror="markMissing(this)"><span class="caption">Зустрічі та пояснення</span></div>
               </div>
             </div>
           </div>
@@ -1357,15 +1396,15 @@
           <div class="panel-inner">
             <div class="slide-header">
               <h2 class="slide-title">MTWTU LAW HUB у кадрі</h2>
-              <p class="slide-subtitle">Реальні моменти роботи: консультації, зустрічі, навчання, документи та підтримка людей у різних форматах</p>
+              <p class="slide-subtitle">Акуратна добірка реальних моментів: консультації, зустрічі, навчання та робота з людьми.</p>
             </div>
-            <div class="photo-mosaic">
-              <div class="photo-card span-5" data-full="1.JPG"><img src="1.JPG" alt="Консультація в офісі" onerror="markMissing(this)"><span class="caption">Індивідуальна консультація</span></div>
-              <div class="photo-card span-3" data-full="2.JPG"><img src="2.JPG" alt="Сімейна консультація" onerror="markMissing(this)"><span class="caption">Підтримка родин</span></div>
-              <div class="photo-card span-4" data-full="5.JPG"><img src="5.JPG" alt="Навчання" onerror="markMissing(this)"><span class="caption">Навчання та зустрічі</span></div>
-              <div class="photo-card span-3" data-full="6.JPG"><img src="6.JPG" alt="Консультація" onerror="markMissing(this)"></div>
-              <div class="photo-card span-3" data-full="8.JPG"><img src="8.JPG" alt="Консультація" onerror="markMissing(this)"></div>
-              <div class="photo-card span-6" data-full="20.JPG"><img src="20.JPG" alt="Зустріч з курсантами" onerror="markMissing(this)"><span class="caption">Правова обізнаність молоді</span></div>
+            <div class="clean-gallery">
+              <div class="photo-card" data-full="1.JPG"><img src="1.JPG" alt="Індивідуальна консультація" onerror="markMissing(this)"><span class="caption">Індивідуальна консультація</span></div>
+              <div class="photo-card" data-full="2.JPG"><img src="2.JPG" alt="Підтримка родин" onerror="markMissing(this)"><span class="caption">Підтримка родин</span></div>
+              <div class="photo-card" data-full="5.JPG"><img src="5.JPG" alt="Навчальна зустріч" onerror="markMissing(this)"><span class="caption">Навчальна зустріч</span></div>
+              <div class="photo-card" data-full="12.JPEG"><img src="12.JPEG" alt="Юридична підтримка в офісі" onerror="markMissing(this)"><span class="caption">Юридична підтримка в офісі</span></div>
+              <div class="photo-card" data-full="13.JPEG"><img src="13.JPEG" alt="Командна робота" onerror="markMissing(this)"><span class="caption">Командна робота</span></div>
+              <div class="photo-card" data-full="20.JPG"><img src="20.JPG" alt="Правова обізнаність молоді" onerror="markMissing(this)"><span class="caption">Правова обізнаність молоді</span></div>
             </div>
           </div>
         </article></div>
@@ -1377,10 +1416,10 @@
           <div class="panel-inner">
             <div class="slide-header"><h2 class="slide-title">Від консультації до результату</h2><p class="slide-subtitle">Візуальна логіка MTWTU LAW HUB: звернення → консультація → документи → довіра</p></div>
             <div class="grid-4">
-              <div class="photo-card" data-full="15.jpg" style="aspect-ratio:4/3;"><img src="15.jpg" alt="Робота з документами" onerror="markMissing(this)"><span class="caption">1. Запит і документи</span></div>
-              <div class="photo-card" data-full="16.jpg" style="aspect-ratio:4/3;"><img src="16.jpg" alt="Документи моряка" onerror="markMissing(this)"><span class="caption">2. Перевірка деталей</span></div>
+              <div class="photo-card" data-full="16.jpg" style="aspect-ratio:4/3;"><img src="16.jpg" alt="Документи моряка" onerror="markMissing(this)"><span class="caption">1. Запит і документи</span></div>
+              <div class="photo-card" data-full="15.jpg" style="aspect-ratio:4/3;"><img src="15.jpg" alt="Робота з документами" onerror="markMissing(this)"><span class="caption">2. Перевірка деталей</span></div>
               <div class="photo-card" data-full="14.JPEG" style="aspect-ratio:4/3;"><img src="14.JPEG" alt="Супровід" onerror="markMissing(this)"><span class="caption">3. Супровід</span></div>
-              <div class="photo-card" data-full="13.JPEG" style="aspect-ratio:4/3;"><img src="13.JPEG" alt="Консультація в офісі" onerror="markMissing(this)"><span class="caption">4. Довіра</span></div>
+              <div class="photo-card" data-full="8.JPG" style="aspect-ratio:4/3;"><img src="8.JPG" alt="Довіра після консультації" onerror="markMissing(this)"><span class="caption">4. Довіра</span></div>
             </div>
             <div class="highlight-box" style="margin-top:var(--space-3); text-align:center;"><p class="content-text">Саме так юридична підтримка перестає бути абстрактною — вона стає конкретною дією для конкретної людини.</p></div>
           </div>
@@ -1395,25 +1434,17 @@
               <h2 class="slide-title">Ширший вплив проєкту</h2>
               <p class="slide-subtitle">Тренінги «Генеруй та втілюй бізнес-ідеї» та «Розпочни власний бізнес»</p>
             </div>
-            <div class="grid-2">
-              <div class="glass-card">
-                <div class="stats-grid" style="grid-template-columns:repeat(3,1fr); margin:0 0 var(--space-2) 0;">
-                  <div class="stat-card"><div class="stat-number js-counter" data-target="40">0</div><div class="stat-label">людей пройшли навчання</div></div>
-                  <div class="stat-card"><div class="stat-number js-counter" data-target="20">0</div><div class="stat-label">в Ізмаїлі</div></div>
-                  <div class="stat-card"><div class="stat-number js-counter" data-target="20">0</div><div class="stat-label">в Одесі</div></div>
-                </div>
-                <ul class="bullet-list">
-                  <li data-icon="📍">Ізмаїл — на базі Ізмаїльського інтернаціонального клубу моряків.</li>
-                  <li data-icon="📍">Одеса — на базі Морського Юніон Центру.</li>
-                  <li data-icon="🎓">Сертифіковані тренери ILO SIYB навчали бізнес-плануванню, маркетинговим стратегіям, фінансовому управлінню та підприємницькому мисленню.</li>
-                </ul>
+            <div class="glass-card training-impact">
+              <div class="stats-grid" style="margin:0 0 var(--space-2) 0;">
+                <div class="stat-card"><div class="stat-number js-counter" data-target="40">0</div><div class="stat-label">людей пройшли навчання</div></div>
+                <div class="stat-card"><div class="stat-number js-counter" data-target="20">0</div><div class="stat-label">в Ізмаїлі</div></div>
+                <div class="stat-card"><div class="stat-number js-counter" data-target="20">0</div><div class="stat-label">в Одесі</div></div>
               </div>
-              <div class="image-strip" style="grid-template-columns:1fr 1fr; margin-top:0;">
-                <div class="photo-card" data-full="17.jpg"><img src="17.jpg" alt="Тренінг" onerror="markMissing(this)"></div>
-                <div class="photo-card" data-full="19.jpg"><img src="19.jpg" alt="Зустріч" onerror="markMissing(this)"></div>
-                <div class="photo-card" data-full="5.JPG"><img src="5.JPG" alt="Навчальна зустріч" onerror="markMissing(this)"></div>
-                <div class="photo-card" data-full="20.JPG"><img src="20.JPG" alt="Зустріч з курсантами" onerror="markMissing(this)"></div>
-              </div>
+              <ul class="bullet-list">
+                <li data-icon="📍">Ізмаїл — навчання проходило на базі Ізмаїльського інтернаціонального клубу моряків.</li>
+                <li data-icon="📍">Одеса — навчання проходило на базі Морського Юніон Центру.</li>
+                <li data-icon="🎓">Сертифіковані тренери ILO SIYB навчали основам бізнес-планування, маркетингових стратегій, фінансового управління та підприємницького мислення.</li>
+              </ul>
             </div>
           </div>
         </article></div>
@@ -1517,10 +1548,10 @@
                   <p class="content-text">Короткий формат працює як міст між складною юридичною темою і реальною допомогою. Саме так перегляд перетворюється на звернення, а звернення — на підтримку.</p>
                 </div>
               </div>
-              <div class="photo-stack compact-photo">
-                <div class="stack-card one" data-full="16.jpg"><img src="16.jpg" alt="Документи моряка" onerror="markMissing(this)"></div>
-                <div class="stack-card two" data-full="15.jpg"><img src="15.jpg" alt="Консультація щодо документів" onerror="markMissing(this)"></div>
-                <div class="stack-card three" data-full="1.JPG"><img src="1.JPG" alt="Очна консультація" onerror="markMissing(this)"></div>
+              <div class="auto-stack s22-photo-stack">
+                <div class="auto-card is-active" data-full="9.JPG"><img src="9.JPG" alt="Робота з документами" onerror="markMissing(this)"><span class="caption">Робота з документами</span></div>
+                <div class="auto-card is-next" data-full="10.JPG"><img src="10.JPG" alt="Практичне консультування" onerror="markMissing(this)"><span class="caption">Практичне консультування</span></div>
+                <div class="auto-card is-third" data-full="11.JPEG"><img src="11.JPEG" alt="Супровід моряків" onerror="markMissing(this)"><span class="caption">Супровід моряків</span></div>
               </div>
             </div>
           </div>
@@ -1533,10 +1564,10 @@
           <div class="panel-inner">
             <div class="slide-header"><h2 class="slide-title">Як отримати юридичну підтримку</h2><p class="slide-subtitle">Консультації та супровід доступні для членів ПРМТУ</p></div>
             <div class="grid-4">
-              <div class="stat-card"><div class="stat-label">Крок 1</div><div class="stat-number" style="font-size:clamp(22px,2.4vw,32px);">Написати нам</div><p class="timeline-description">У соцмережах або іншому зручному каналі звʼязку.</p></div>
-              <div class="stat-card"><div class="stat-label">Крок 2</div><div class="stat-number" style="font-size:clamp(22px,2.4vw,32px);">Членство</div><p class="timeline-description">Підкажемо, як оформити або підтвердити членство в ПРМТУ.</p></div>
-              <div class="stat-card"><div class="stat-label">Крок 3</div><div class="stat-number" style="font-size:clamp(22px,2.4vw,32px);">Рішення</div><p class="timeline-description">Дамо чіткий план дій та супровід по вашому запиту.</p></div>
-              <div class="stat-card"><div class="stat-label">Ключове</div><div class="stat-number" style="font-size:clamp(22px,2.4vw,32px);">Швидко і по суті</div><p class="timeline-description">Фокус — на практичному результаті та захисті прав.</p></div>
+              <div class="stat-card support-card"><div class="stat-label">Крок 1</div><div class="stat-number">Написати нам</div><p class="timeline-description">У соцмережах або іншому зручному каналі звʼязку.</p></div>
+              <div class="stat-card support-card"><div class="stat-label">Крок 2</div><div class="stat-number">Членство</div><p class="timeline-description">Підкажемо, як оформити або підтвердити членство в ПРМТУ.</p></div>
+              <div class="stat-card support-card"><div class="stat-label">Крок 3</div><div class="stat-number">Рішення</div><p class="timeline-description">Дамо чіткий план дій та супровід по вашому запиту.</p></div>
+              <div class="stat-card support-card"><div class="stat-label">Ключове</div><div class="stat-number">Швидко і по суті</div><p class="timeline-description">Фокус — на практичному результаті та захисті прав.</p></div>
             </div>
             <div class="highlight-box"><p class="content-text"><strong>Важливо:</strong> допомога надається після підтвердження членства — це правило, яке робить підтримку системною та сталою.</p></div>
           </div>
@@ -1666,7 +1697,7 @@
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const clamp = (n,min,max) => Math.max(min, Math.min(max,n));
       // Vimeo global video: paste either a full Vimeo link or only the numeric video ID.
-      const VIMEO_VIDEO_SOURCE = 'VIMEO_VIDEO_SOURCE';
+      const VIMEO_VIDEO_SOURCE = '1186197729';
       const vimeoFrame = document.getElementById('vimeoGlobalVideo');
       const vimeoBox = document.querySelector('.global-video');
       function getVimeoId(source){
@@ -1681,31 +1712,11 @@
       }
       const VIMEO_VIDEO_ID = getVimeoId(VIMEO_VIDEO_SOURCE);
       if (vimeoFrame && VIMEO_VIDEO_ID){
-        vimeoFrame.src = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?background=1&autoplay=1&loop=1&muted=1&playsinline=1&title=0&byline=0&portrait=0&dnt=1`;
+        vimeoFrame.src = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&dnt=1`;
         vimeoFrame.addEventListener('load', () => { if (vimeoBox) vimeoBox.classList.add('is-loaded'); });
       }
 
-      function rotateAutoStack(){
-        const stack = document.getElementById('autoPhotoStack');
-        if(!stack || prefersReduced) return;
-        const cards = Array.from(stack.querySelectorAll('.auto-card'));
-        if(cards.length < 3) return;
-        let head = 0;
-        function paint(){
-          cards.forEach((card, i) => {
-            card.classList.remove('is-active', 'is-next', 'is-third');
-            const pos = (i - head + cards.length) % cards.length;
-            if(pos === 0) card.classList.add('is-active');
-            if(pos === 1) card.classList.add('is-next');
-            if(pos === 2) card.classList.add('is-third');
-          });
-        }
-        paint();
-        setInterval(() => {
-          head = (head + 1) % cards.length;
-          paint();
-        }, 3200);
-      }
+
 
       function setVhVar(){
         root.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
@@ -1903,14 +1914,13 @@
           });
         };
         render();
-        if (!prefersReduced) { setInterval(() => { pos = (pos + 1) % cards.length; render(); }, 2800); }
+        if (!prefersReduced) { setInterval(() => { pos = (pos + 1) % cards.length; render(); }, 4200); }
       });
 
       // Phone placeholders are no longer used on main slides; Vimeo placeholder is controlled above.
 
       setVhVar();
       seedParticles();
-      rotateAutoStack();
       const initialId = (location.hash || '').replace('#','').trim();
       const initialIdx = initialId ? sections.findIndex(s=>s.id === initialId) : -1;
       activeIndex = initialIdx >= 0 ? initialIdx : 0;
