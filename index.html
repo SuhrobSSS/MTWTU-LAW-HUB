@@ -1043,6 +1043,37 @@
       }
     }
 
+
+    /* ===== V10 FIX: crop Vimeo iframe to remove white top/bottom bars ===== */
+    .global-video{
+      aspect-ratio:9 / 18.9 !important;
+      width:clamp(285px, 19vw, 385px) !important;
+      padding:4px !important;
+      background:linear-gradient(145deg,#0f1824 0%,#03060a 100%) !important;
+    }
+    .global-video-screen{
+      background:#000 !important;
+      overflow:hidden !important;
+      position:relative !important;
+    }
+    #vimeoGlobalVideo{
+      position:absolute !important;
+      top:50% !important;
+      left:50% !important;
+      width:112% !important;
+      height:118% !important;
+      max-width:none !important;
+      transform:translate(-50%, -50%) !important;
+      transform-origin:center center !important;
+      border:0 !important;
+      background:#000 !important;
+      display:block !important;
+    }
+    .global-video::before{
+      z-index:5 !important;
+      background:#05080d !important;
+    }
+
   </style>
 </head>
 
@@ -1051,7 +1082,7 @@
     <div class="global-video-screen">
       <iframe
         id="vimeoGlobalVideo"
-        src="https://player.vimeo.com/video/1186197729?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&dnt=1"
+        src="https://player.vimeo.com/video/1186197729?background=1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&controls=0&dnt=1"
         title="MLH vimeo"
         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
         allowfullscreen
@@ -1452,14 +1483,13 @@
           <div class="panel-inner">
             <div class="slide-header">
               <h2 class="slide-title">MTWTU LAW HUB у кадрі</h2>
-              <p class="slide-subtitle">Акуратна добірка реальних моментів: консультації, зустрічі, навчання та робота з людьми.</p>
             </div>
             <div class="clean-gallery">
               <div class="photo-card" data-full="1.JPG"><img src="1.JPG" alt="Індивідуальна консультація" onerror="markMissing(this)"><span class="caption">Індивідуальна консультація</span></div>
               <div class="photo-card" data-full="2.JPG"><img src="2.JPG" alt="Підтримка родин" onerror="markMissing(this)"><span class="caption">Підтримка родин</span></div>
               <div class="photo-card" data-full="5.JPG"><img src="5.JPG" alt="Навчальна зустріч" onerror="markMissing(this)"><span class="caption">Навчальна зустріч</span></div>
               <div class="photo-card" data-full="12.JPEG"><img src="12.JPEG" alt="Юридична підтримка в офісі" onerror="markMissing(this)"><span class="caption">Юридична підтримка в офісі</span></div>
-              <div class="photo-card" data-full="13.JPEG"><img src="13.JPEG" alt="Командна робота" onerror="markMissing(this)"><span class="caption">Командна робота</span></div>
+              <div class="photo-card" data-full="3.JPG"><img src="3.JPG" alt="Командна робота" onerror="markMissing(this)"><span class="caption">Командна робота</span></div>
               <div class="photo-card" data-full="20.JPG"><img src="20.JPG" alt="Правова обізнаність молоді" onerror="markMissing(this)"><span class="caption">Правова обізнаність молоді</span></div>
             </div>
           </div>
@@ -1768,7 +1798,7 @@
       }
       const VIMEO_VIDEO_ID = getVimeoId(VIMEO_VIDEO_SOURCE);
       if (vimeoFrame && VIMEO_VIDEO_ID){
-        vimeoFrame.src = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?background=1&autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&controls=0&dnt=1`;
+        vimeoFrame.src = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?background=1&badge=0&autopause=0&autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&controls=0&dnt=1`;
         vimeoFrame.addEventListener('load', () => { if (vimeoBox) vimeoBox.classList.add('is-loaded'); });
       }
 
