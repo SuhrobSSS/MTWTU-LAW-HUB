@@ -850,6 +850,85 @@
       .map-label{ font-size:10px; padding:6px 8px; }
     }
 
+    /* ===== FINAL FIX: Vimeo left video crop / no side bars / compact phone frame ===== */
+    .global-video{
+      width:clamp(315px, 22vw, 430px) !important;
+      padding:5px !important;
+      border-radius:clamp(26px, 2.8vw, 42px) !important;
+      background:linear-gradient(145deg,#172334 0%, #05080d 100%) !important;
+      border:1px solid rgba(233,196,106,.58) !important;
+      box-shadow:0 30px 90px rgba(0,0,0,.66), 0 0 76px rgba(233,196,106,.20), inset 0 0 0 1px rgba(255,255,255,.05) !important;
+    }
+    .global-video::before{
+      top:9px !important;
+      width:24% !important;
+      height:7px !important;
+      opacity:.62 !important;
+      background:#03070c !important;
+    }
+    .global-video-screen{
+      background:#000 !important;
+      border-radius:calc(clamp(24px, 2.45vw, 38px) - 5px) !important;
+      overflow:hidden !important;
+    }
+    #vimeoGlobalVideo{
+      position:absolute !important;
+      top:50% !important;
+      left:50% !important;
+      width:82% !important;
+      height:100% !important;
+      max-width:none !important;
+      transform:translate(-50%, -50%) scale(1.235) !important;
+      transform-origin:center center !important;
+      background:#000 !important;
+      border:0 !important;
+      display:block !important;
+    }
+    .global-video-caption{
+      left:7px !important;
+      right:7px !important;
+      bottom:7px !important;
+      padding:6px 8px !important;
+      border-radius:11px !important;
+      font-size:10px !important;
+    }
+    @media (min-width:1160px){
+      .panel-inner{
+        max-width:min(1220px, calc(100vw - (2 * var(--gutter)) - clamp(370px, 26vw, 500px))) !important;
+        margin-left:clamp(370px, 26vw, 500px) !important;
+        margin-right:auto !important;
+      }
+      .panel-inner.narrow{
+        max-width:min(1020px, calc(100vw - (2 * var(--gutter)) - clamp(370px, 26vw, 500px))) !important;
+      }
+    }
+    @media (max-width:1159px){
+      .global-video{
+        width:clamp(130px, 18vw, 190px) !important;
+        padding:4px !important;
+        top:auto !important;
+        bottom:70px !important;
+        left:10px !important;
+        opacity:.78 !important;
+      }
+      .global-video::before{ height:4px !important; top:6px !important; }
+      .global-video-caption{ display:none !important; }
+      #vimeoGlobalVideo{
+        width:82% !important;
+        height:100% !important;
+        transform:translate(-50%, -50%) scale(1.235) !important;
+      }
+    }
+    @media (max-width:740px){
+      .global-video{
+        width:92px !important;
+        opacity:.60 !important;
+        left:8px !important;
+        bottom:64px !important;
+        padding:3px !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -1587,7 +1666,7 @@
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const clamp = (n,min,max) => Math.max(min, Math.min(max,n));
       // Vimeo global video: paste either a full Vimeo link or only the numeric video ID.
-      const VIMEO_VIDEO_SOURCE = '1186197729';
+      const VIMEO_VIDEO_SOURCE = 'VIMEO_VIDEO_SOURCE';
       const vimeoFrame = document.getElementById('vimeoGlobalVideo');
       const vimeoBox = document.querySelector('.global-video');
       function getVimeoId(source){
@@ -1602,7 +1681,7 @@
       }
       const VIMEO_VIDEO_ID = getVimeoId(VIMEO_VIDEO_SOURCE);
       if (vimeoFrame && VIMEO_VIDEO_ID){
-        vimeoFrame.src = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?background=1&autoplay=1&loop=1&muted=1&playsinline=1&title=0&byline=0&portrait=0`;
+        vimeoFrame.src = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?background=1&autoplay=1&loop=1&muted=1&playsinline=1&title=0&byline=0&portrait=0&dnt=1`;
         vimeoFrame.addEventListener('load', () => { if (vimeoBox) vimeoBox.classList.add('is-loaded'); });
       }
 
@@ -1842,4 +1921,3 @@
   </script>
 </body>
 </html>
-
