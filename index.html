@@ -1093,6 +1093,117 @@
     /* MOBILE VIMEO FIX: allow tap + external fallback button */
     .mobile-vimeo-open{display:none;position:absolute;right:5px;top:5px;z-index:8;width:22px;height:22px;border-radius:999px;align-items:center;justify-content:center;text-decoration:none;background:rgba(233,196,106,.92);color:#041c2f;font-size:11px;font-weight:900;box-shadow:0 6px 18px rgba(0,0,0,.45)}
     @media (max-width:860px){.global-video{pointer-events:auto!important}.global-video iframe{pointer-events:auto!important}.mobile-vimeo-open{display:flex}}
+
+    /* ===== MOBILE VIMEO PATCH v2: Android + iPhone, desktop untouched ===== */
+    @media (max-width: 860px){
+      .global-video{
+        width:96px !important;
+        aspect-ratio:9 / 18.9 !important;
+        left:8px !important;
+        right:auto !important;
+        top:auto !important;
+        bottom:76px !important;
+        padding:2px !important;
+        opacity:.96 !important;
+        z-index:6200 !important;
+        pointer-events:auto !important;
+        overflow:hidden !important;
+        border-radius:18px !important;
+        background:#03060a !important;
+        box-shadow:0 14px 38px rgba(0,0,0,.62), 0 0 24px rgba(233,196,106,.20) !important;
+        -webkit-transform:translateZ(0) !important;
+        transform:translateZ(0) !important;
+      }
+
+      .global-video::before{
+        display:none !important;
+      }
+
+      .global-video-screen{
+        position:relative !important;
+        width:100% !important;
+        height:100% !important;
+        border-radius:15px !important;
+        background:#000 !important;
+        overflow:hidden !important;
+      }
+
+      #vimeoGlobalVideo{
+        position:absolute !important;
+        top:50% !important;
+        left:50% !important;
+        width:124% !important;
+        height:124% !important;
+        max-width:none !important;
+        transform:translate(-50%, -50%) !important;
+        border:0 !important;
+        background:#000 !important;
+        display:block !important;
+        opacity:1 !important;
+        pointer-events:none !important;
+      }
+
+      .global-video.is-loaded .global-video-placeholder,
+      .global-video-placeholder{
+        display:none !important;
+        pointer-events:none !important;
+      }
+
+      .global-video-caption{
+        display:none !important;
+      }
+
+      .mobile-vimeo-open{
+        display:block !important;
+        position:absolute !important;
+        inset:0 !important;
+        z-index:90 !important;
+        width:auto !important;
+        height:auto !important;
+        border-radius:15px !important;
+        background:rgba(0,0,0,.01) !important;
+        color:transparent !important;
+        font-size:0 !important;
+        text-decoration:none !important;
+        box-shadow:none !important;
+        -webkit-tap-highlight-color:transparent !important;
+        touch-action:manipulation !important;
+      }
+
+      .mobile-vimeo-open::after{
+        content:'▶' !important;
+        position:absolute !important;
+        top:6px !important;
+        right:6px !important;
+        width:28px !important;
+        height:28px !important;
+        border-radius:999px !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        background:rgba(233,196,106,.96) !important;
+        color:#041c2f !important;
+        font-size:13px !important;
+        font-weight:900 !important;
+        box-shadow:0 6px 18px rgba(0,0,0,.45) !important;
+      }
+
+      .nav-float{
+        z-index:9500 !important;
+      }
+
+      .topbar{
+        z-index:9600 !important;
+      }
+    }
+
+    @media (max-width: 380px){
+      .global-video{
+        width:86px !important;
+        bottom:74px !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -1111,7 +1222,7 @@
         <div><b>Vimeo video</b>У коді заміни <strong>VIMEO_VIDEO_SOURCE</strong> на посилання або ID відео з Vimeo</div>
       </div>
       <div class="global-video-caption">MTWTU LAW HUB у дії</div>
-      <a class="mobile-vimeo-open" href="https://vimeo.com/1186197729" target="_blank" rel="noopener noreferrer" aria-label="Відкрити відео у Vimeo">▶</a>
+      <a class="mobile-vimeo-open" href="https://player.vimeo.com/video/1186197729?autoplay=1&muted=0&controls=1&playsinline=1&title=0&byline=0&portrait=0&dnt=1" target="_blank" rel="noopener noreferrer" aria-label="Відкрити відео у Vimeo">▶</a>
     </div>
   </div>
 
@@ -1803,10 +1914,12 @@
 
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const clamp = (n,min,max) => Math.max(min, Math.min(max,n));
-      // Vimeo global video: paste either a full Vimeo link or only the numeric video ID.
+      // Vimeo global video — desktop stays autoplay; mobile/iPhone uses safe visible embed + external open link.
       const VIMEO_VIDEO_SOURCE = '1186197729';
       const vimeoFrame = document.getElementById('vimeoGlobalVideo');
       const vimeoBox = document.querySelector('.global-video');
+      const vimeoOpen = document.querySelector('.mobile-vimeo-open');
+
       function getVimeoId(source){
         if(!source || source === 'VIMEO_VIDEO_SOURCE') return '';
         const text = String(source).trim();
@@ -1817,10 +1930,31 @@
         const idMatch = text.match(/^\d+$/);
         return idMatch ? idMatch[0] : '';
       }
+
+      function isMobileVimeoMode(){
+        return window.matchMedia('(max-width: 860px)').matches || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      }
+
       const VIMEO_VIDEO_ID = getVimeoId(VIMEO_VIDEO_SOURCE);
-      if (vimeoFrame && VIMEO_VIDEO_ID){
-        vimeoFrame.src = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?badge=0&autopause=0&autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&controls=0&dnt=1`;
-        vimeoFrame.addEventListener('load', () => { if (vimeoBox) vimeoBox.classList.add('is-loaded'); });
+
+      if(vimeoFrame && VIMEO_VIDEO_ID){
+        const desktopVimeoUrl = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&controls=0&dnt=1`;
+        const mobileVimeoUrl = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=0&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&controls=0&dnt=1`;
+        vimeoFrame.src = isMobileVimeoMode() ? mobileVimeoUrl : desktopVimeoUrl;
+
+        const markVimeoLoaded = () => {
+          if(vimeoBox) vimeoBox.classList.add('is-loaded');
+        };
+
+        vimeoFrame.addEventListener('load', markVimeoLoaded);
+        setTimeout(markVimeoLoaded, 1200);
+      }
+
+      if(vimeoOpen && VIMEO_VIDEO_ID){
+        const mobileOpenUrl = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?autoplay=1&muted=0&controls=1&playsinline=1&title=0&byline=0&portrait=0&dnt=1`;
+        vimeoOpen.href = mobileOpenUrl;
+        vimeoOpen.setAttribute('target', '_blank');
+        vimeoOpen.setAttribute('rel', 'noopener noreferrer');
       }
 
 
