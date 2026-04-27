@@ -1131,6 +1131,10 @@
   .global-video-placeholder{
     pointer-events:none !important;
   }
+
+  .nav-float{
+    z-index:9500 !important;
+  }
 }
   </style>
 </head>
@@ -1887,7 +1891,6 @@ if (vimeoOpen) {
 if (vimeoBox) {
   vimeoBox.addEventListener('click', openVimeoMobile, false);
   vimeoBox.addEventListener('touchend', openVimeoMobile, false);
-}
 }
 
       function setVhVar(){
