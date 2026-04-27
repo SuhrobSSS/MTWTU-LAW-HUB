@@ -1090,48 +1090,553 @@
     }
     @media (max-width:380px){.brand .b1{max-width:36vw!important;font-size:11px!important}.top-actions .btn{padding:8px 9px!important}.global-video{width:78px!important;bottom:68px!important;opacity:.84!important}.process-row{grid-template-columns:1fr!important}.map-cloud{min-height:470px!important}}
 
-    /* ===== FINAL MOBILE VIMEO FIX — desktop untouched ===== */
-.mobile-vimeo-open{
-  display:none;
-}
+    /* MOBILE VIMEO FIX: allow tap + external fallback button */
+    .mobile-vimeo-open{display:none;position:absolute;right:5px;top:5px;z-index:8;width:22px;height:22px;border-radius:999px;align-items:center;justify-content:center;text-decoration:none;background:rgba(233,196,106,.92);color:#041c2f;font-size:11px;font-weight:900;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+    @media (max-width:860px){.global-video{pointer-events:auto!important}.global-video iframe{pointer-events:auto!important}.mobile-vimeo-open{display:flex}}
 
-@media (max-width: 860px){
-  .global-video{
-    pointer-events:auto !important;
-    z-index:8000 !important;
-    cursor:pointer !important;
-    -webkit-tap-highlight-color: transparent !important;
-  }
 
-  .global-video iframe{
-    pointer-events:none !important;
-  }
+    /* ===== FINAL ALL-DEVICES MOBILE FIX: iPhone + Android, desktop untouched ===== */
+    .mobile-vimeo-fixed-button{
+      display:none;
+    }
 
-  .mobile-vimeo-open{
-    display:block !important;
-    position:absolute !important;
-    inset:0 !important;
-    z-index:80 !important;
-    width:auto !important;
-    height:auto !important;
-    background:transparent !important;
-    color:transparent !important;
-    font-size:0 !important;
-    text-decoration:none !important;
-    box-shadow:none !important;
-    border-radius:15px !important;
-    -webkit-tap-highlight-color: transparent !important;
-  }
+    @media (max-width: 860px){
+      .global-video{
+        width:104px !important;
+        aspect-ratio:9 / 18.9 !important;
+        left:8px !important;
+        right:auto !important;
+        top:auto !important;
+        bottom:112px !important;
+        padding:2px !important;
+        opacity:1 !important;
+        z-index:6200 !important;
+        pointer-events:auto !important;
+        overflow:hidden !important;
+        border-radius:18px !important;
+        background:#03060a !important;
+        box-shadow:0 14px 38px rgba(0,0,0,.62), 0 0 24px rgba(233,196,106,.20) !important;
+        -webkit-transform:translateZ(0) !important;
+        transform:translateZ(0) !important;
+      }
 
-  .mobile-vimeo-open::after{
-    display:none !important;
-    content:none !important;
-  }
+      .global-video::before{
+        display:none !important;
+      }
 
-  .global-video-placeholder{
-    pointer-events:none !important;
-  }
-}
+      .global-video-screen{
+        position:relative !important;
+        width:100% !important;
+        height:100% !important;
+        border-radius:15px !important;
+        background:#000 !important;
+        overflow:hidden !important;
+      }
+
+      #vimeoGlobalVideo{
+        position:absolute !important;
+        top:50% !important;
+        left:50% !important;
+        width:124% !important;
+        height:124% !important;
+        max-width:none !important;
+        transform:translate(-50%, -50%) !important;
+        border:0 !important;
+        background:#000 !important;
+        display:block !important;
+        opacity:1 !important;
+        pointer-events:none !important;
+      }
+
+      .global-video-placeholder{
+        display:none !important;
+        pointer-events:none !important;
+      }
+
+      .global-video-caption{
+        display:none !important;
+      }
+
+      .mobile-vimeo-open{
+        display:block !important;
+        position:absolute !important;
+        inset:0 !important;
+        z-index:200 !important;
+        width:auto !important;
+        height:auto !important;
+        border-radius:15px !important;
+        background:rgba(0,0,0,.01) !important;
+        color:transparent !important;
+        font-size:0 !important;
+        text-decoration:none !important;
+        box-shadow:none !important;
+        -webkit-tap-highlight-color:transparent !important;
+        touch-action:manipulation !important;
+      }
+
+      .mobile-vimeo-open::after{
+        content:'▶' !important;
+        position:absolute !important;
+        top:6px !important;
+        right:6px !important;
+        width:28px !important;
+        height:28px !important;
+        border-radius:999px !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        background:rgba(233,196,106,.96) !important;
+        color:#041c2f !important;
+        font-size:13px !important;
+        font-weight:900 !important;
+        box-shadow:0 6px 18px rgba(0,0,0,.45) !important;
+      }
+
+      .mobile-vimeo-fixed-button{
+        display:flex !important;
+        position:fixed !important;
+        left:8px !important;
+        bottom:64px !important;
+        z-index:9700 !important;
+        min-height:34px !important;
+        max-width:150px !important;
+        align-items:center !important;
+        justify-content:center !important;
+        gap:6px !important;
+        padding:9px 11px !important;
+        border-radius:999px !important;
+        border:1px solid rgba(233,196,106,.82) !important;
+        background:linear-gradient(135deg, rgba(233,196,106,.98), rgba(244,213,141,.96)) !important;
+        color:#041c2f !important;
+        font-family:'Montserrat', Arial, sans-serif !important;
+        font-size:10.5px !important;
+        font-weight:900 !important;
+        line-height:1 !important;
+        text-transform:uppercase !important;
+        text-decoration:none !important;
+        letter-spacing:.25px !important;
+        box-shadow:0 10px 26px rgba(0,0,0,.46), 0 0 20px rgba(233,196,106,.22) !important;
+        -webkit-tap-highlight-color:transparent !important;
+        touch-action:manipulation !important;
+      }
+
+      .nav-float{
+        z-index:9500 !important;
+      }
+    }
+
+    @media (max-width: 380px){
+      .global-video{
+        width:92px !important;
+        bottom:108px !important;
+      }
+
+      .mobile-vimeo-fixed-button{
+        max-width:138px !important;
+        font-size:10px !important;
+        padding:8px 10px !important;
+      }
+    }
+
+
+    /* ===== FINAL RESPONSIVE PATCH: slides 19–20 fit on small laptop and mobile screens. Desktop large screens untouched. ===== */
+    @media (min-width: 861px) and (max-height: 820px){
+      #s19 .slide-header,
+      #s20 .slide-header{
+        margin-bottom:10px !important;
+      }
+
+      #s19 .slide-title,
+      #s20 .slide-title{
+        font-size:clamp(28px, 3.15vw, 48px) !important;
+        line-height:.96 !important;
+        padding-bottom:6px !important;
+      }
+
+      #s19 .slide-title::after,
+      #s20 .slide-title::after{
+        margin-top:6px !important;
+      }
+
+      #s19 .grid-4{
+        gap:10px !important;
+        align-items:stretch !important;
+      }
+
+      #s19 .stat-card{
+        padding:10px 12px !important;
+        border-radius:22px !important;
+        min-height:0 !important;
+      }
+
+      #s19 .svg-platform{
+        width:42px !important;
+        height:42px !important;
+        margin-bottom:6px !important;
+      }
+
+      #s19 .platform-icon{
+        font-size:34px !important;
+        margin-bottom:6px !important;
+      }
+
+      #s19 .stat-number{
+        font-size:clamp(28px, 3.35vw, 43px) !important;
+        line-height:.92 !important;
+        letter-spacing:-.065em !important;
+        white-space:nowrap !important;
+        overflow:visible !important;
+        margin-bottom:8px !important;
+      }
+
+      #s19 .stat-label{
+        font-size:12px !important;
+        line-height:1.18 !important;
+      }
+
+      #s19 .metric-ribbon{
+        margin-top:10px !important;
+        padding:9px 12px !important;
+        gap:12px !important;
+        border-radius:22px !important;
+      }
+
+      #s19 .metric-ribbon > div{
+        min-width:0 !important;
+        flex:1 1 0 !important;
+      }
+
+      #s19 .metric-ribbon b{
+        font-size:clamp(26px, 3.1vw, 42px) !important;
+        line-height:.95 !important;
+        letter-spacing:-.055em !important;
+        white-space:nowrap !important;
+      }
+
+      #s19 .metric-ribbon span{
+        font-size:clamp(13px, 1.45vw, 19px) !important;
+        margin-top:4px !important;
+      }
+
+      #s19 .cover-tagline{
+        margin-top:12px !important;
+        font-size:clamp(18px, 2vw, 25px) !important;
+        line-height:1.2 !important;
+      }
+
+      #s20 .slide-subtitle{
+        font-size:clamp(12px, 1.15vw, 16px) !important;
+        line-height:1.2 !important;
+      }
+
+      #s20 .funnel svg{
+        width:min(760px, 100%) !important;
+        max-height:250px !important;
+      }
+
+      #s20 .funnel text{
+        font-size:82% !important;
+      }
+
+      #s20 .grid-3{
+        gap:10px !important;
+        margin-top:10px !important;
+      }
+
+      #s20 .glass-card{
+        padding:11px 12px !important;
+        border-radius:18px !important;
+      }
+
+      #s20 .timeline-title{
+        font-size:clamp(14px, 1.25vw, 17px) !important;
+        line-height:1.15 !important;
+        margin-bottom:4px !important;
+      }
+
+      #s20 .timeline-description{
+        font-size:clamp(11px, 1vw, 13px) !important;
+        line-height:1.25 !important;
+      }
+    }
+
+    @media (min-width: 861px) and (max-height: 700px){
+      #s19 .panel-inner,
+      #s20 .panel-inner{
+        transform:scale(.92) !important;
+        transform-origin:center center !important;
+      }
+
+      #s20 .funnel svg{
+        max-height:220px !important;
+      }
+    }
+
+    @media (max-width: 860px){
+      #s19 .stat-number{
+        font-size:clamp(30px, 10.2vw, 42px) !important;
+        letter-spacing:-.06em !important;
+        white-space:nowrap !important;
+      }
+
+      #s19 .metric-ribbon b{
+        font-size:clamp(28px, 9.5vw, 40px) !important;
+        letter-spacing:-.05em !important;
+        white-space:nowrap !important;
+      }
+
+      #s19 .metric-ribbon span{
+        font-size:clamp(13px, 4vw, 17px) !important;
+      }
+
+      #s20 .funnel{
+        overflow-x:auto !important;
+        -webkit-overflow-scrolling:touch !important;
+        justify-content:flex-start !important;
+      }
+
+      #s20 .funnel svg{
+        min-width:680px !important;
+        width:680px !important;
+        max-width:none !important;
+      }
+
+      #s20 .grid-3{
+        margin-top:12px !important;
+      }
+    }
+
+    /* ===== V3 FINAL AUDIT PATCH: progress + slides 19/20 responsive corrections ===== */
+    .topbar{
+      overflow:visible !important;
+    }
+
+    .topbar-inner{
+      position:relative !important;
+      z-index:2 !important;
+    }
+
+    .logo-slot{
+      position:relative !important;
+      z-index:3 !important;
+    }
+
+    .progress-wrap{
+      z-index:0 !important;
+      pointer-events:none !important;
+      bottom:0 !important;
+    }
+
+    .progress-line{
+      pointer-events:none !important;
+    }
+
+    /* Small laptop / projector screens only. Large desktop view remains unchanged. */
+    @media (min-width: 861px) and (max-height: 820px){
+      #s19 .slide-header,
+      #s20 .slide-header{
+        margin-bottom:12px !important;
+      }
+
+      #s19 .slide-title,
+      #s20 .slide-title{
+        font-size:clamp(30px, 3.25vw, 50px) !important;
+        line-height:.98 !important;
+        padding-bottom:7px !important;
+      }
+
+      #s19 .slide-title::after,
+      #s20 .slide-title::after{
+        margin-top:7px !important;
+      }
+
+      /* Slide 19: separate top cards from the lower ribbon and keep numbers inside cards. */
+      #s19 .grid-4{
+        gap:16px !important;
+        margin-bottom:18px !important;
+        align-items:stretch !important;
+      }
+
+      #s19 .stat-card{
+        padding:14px 16px !important;
+        border-radius:22px !important;
+        min-height:0 !important;
+      }
+
+      #s19 .svg-platform{
+        width:40px !important;
+        height:40px !important;
+        margin-bottom:7px !important;
+      }
+
+      #s19 .platform-icon{
+        font-size:32px !important;
+        margin-bottom:7px !important;
+      }
+
+      #s19 .stat-number{
+        font-size:clamp(25px, 2.85vw, 38px) !important;
+        line-height:.96 !important;
+        letter-spacing:-.06em !important;
+        white-space:nowrap !important;
+        overflow:visible !important;
+        margin-bottom:8px !important;
+      }
+
+      #s19 .stat-label{
+        font-size:12.5px !important;
+        line-height:1.22 !important;
+      }
+
+      #s19 .metric-ribbon{
+        margin-top:0 !important;
+        padding:13px 16px !important;
+        gap:18px !important;
+        border-radius:24px !important;
+      }
+
+      #s19 .metric-ribbon > div{
+        min-width:0 !important;
+        flex:1 1 0 !important;
+      }
+
+      #s19 .metric-ribbon b{
+        font-size:clamp(28px, 3.2vw, 43px) !important;
+        line-height:.98 !important;
+        letter-spacing:-.052em !important;
+        white-space:nowrap !important;
+      }
+
+      #s19 .metric-ribbon span{
+        font-size:clamp(14px, 1.45vw, 19px) !important;
+        margin-top:5px !important;
+      }
+
+      #s19 .cover-tagline{
+        margin-top:14px !important;
+        font-size:clamp(18px, 2vw, 25px) !important;
+        line-height:1.22 !important;
+      }
+
+      /* Slide 20: keep funnel and card text readable on smaller screens. */
+      #s20 .slide-subtitle{
+        font-size:clamp(13px, 1.2vw, 17px) !important;
+        line-height:1.24 !important;
+      }
+
+      #s20 .funnel svg{
+        width:min(830px, 100%) !important;
+        max-height:285px !important;
+      }
+
+      #s20 .funnel text:nth-of-type(1){ font-size:30px !important; }
+      #s20 .funnel text:nth-of-type(2){ font-size:21px !important; }
+      #s20 .funnel text:nth-of-type(3){ font-size:27px !important; }
+      #s20 .funnel text:nth-of-type(4){ font-size:20px !important; }
+      #s20 .funnel text:nth-of-type(5){ font-size:25px !important; }
+      #s20 .funnel text:nth-of-type(6){ font-size:19px !important; }
+      #s20 .funnel text:nth-of-type(7){ font-size:31px !important; }
+
+      #s20 .grid-3{
+        gap:12px !important;
+        margin-top:14px !important;
+        grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+      }
+
+      #s20 .glass-card{
+        padding:14px 16px !important;
+        border-radius:20px !important;
+      }
+
+      #s20 .timeline-title{
+        font-size:clamp(16px, 1.38vw, 20px) !important;
+        line-height:1.18 !important;
+        margin-bottom:6px !important;
+      }
+
+      #s20 .timeline-description{
+        font-size:clamp(12.5px, 1.08vw, 15px) !important;
+        line-height:1.32 !important;
+      }
+    }
+
+    @media (min-width: 861px) and (max-height: 700px){
+      #s20 .panel-inner{
+        transform:none !important;
+      }
+
+      #s20 .slide-header{
+        margin-bottom:8px !important;
+      }
+
+      #s20 .slide-title{
+        font-size:clamp(27px, 3vw, 44px) !important;
+      }
+
+      #s20 .funnel svg{
+        max-height:250px !important;
+      }
+
+      #s20 .grid-3{
+        gap:10px !important;
+        margin-top:10px !important;
+      }
+
+      #s20 .glass-card{
+        padding:12px 14px !important;
+      }
+
+      #s20 .timeline-title{
+        font-size:clamp(15px, 1.25vw, 18px) !important;
+      }
+
+      #s20 .timeline-description{
+        font-size:clamp(12px, 1vw, 14px) !important;
+      }
+    }
+
+    /* Phone/tablet only: readable slide 20 text, horizontal funnel allowed. */
+    @media (max-width: 860px){
+      #s19 .grid-4{
+        margin-bottom:16px !important;
+      }
+
+      #s19 .metric-ribbon{
+        margin-top:16px !important;
+      }
+
+      #s20 .funnel{
+        overflow-x:auto !important;
+        -webkit-overflow-scrolling:touch !important;
+        justify-content:flex-start !important;
+        padding-bottom:6px !important;
+      }
+
+      #s20 .funnel svg{
+        min-width:760px !important;
+        width:760px !important;
+        max-width:none !important;
+      }
+
+      #s20 .funnel text:nth-of-type(1){ font-size:30px !important; }
+      #s20 .funnel text:nth-of-type(2){ font-size:21px !important; }
+      #s20 .funnel text:nth-of-type(3){ font-size:27px !important; }
+      #s20 .funnel text:nth-of-type(4){ font-size:20px !important; }
+      #s20 .funnel text:nth-of-type(5){ font-size:25px !important; }
+      #s20 .funnel text:nth-of-type(6){ font-size:19px !important; }
+      #s20 .funnel text:nth-of-type(7){ font-size:31px !important; }
+
+      #s20 .timeline-title{
+        font-size:16px !important;
+        line-height:1.2 !important;
+      }
+
+      #s20 .timeline-description{
+        font-size:13.5px !important;
+        line-height:1.35 !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -1140,7 +1645,7 @@
     <div class="global-video-screen">
       <iframe
         id="vimeoGlobalVideo"
-        src="https://player.vimeo.com/video/1186197729?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&controls=0&dnt=1"
+        src="https://player.vimeo.com/video/1186197729?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&controls=0&dnt=1"
         title="MLH vimeo"
         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
         allowfullscreen
@@ -1150,9 +1655,11 @@
         <div><b>Vimeo video</b>У коді заміни <strong>VIMEO_VIDEO_SOURCE</strong> на посилання або ID відео з Vimeo</div>
       </div>
       <div class="global-video-caption">MTWTU LAW HUB у дії</div>
-      <a class="mobile-vimeo-open" href="https://vimeo.com/1186197729" target="_blank" rel="noopener noreferrer" aria-label="Відкрити відео у Vimeo">▶</a>
+      <a class="mobile-vimeo-open" href="https://vimeo.com/1186197729" target="_self" rel="noopener noreferrer" aria-label="Відкрити відео у Vimeo" onclick="window.location.href='https://vimeo.com/1186197729'; return false;">▶</a>
     </div>
   </div>
+
+  <a class="mobile-vimeo-fixed-button" href="https://vimeo.com/1186197729" target="_self" rel="noopener noreferrer" aria-label="Відкрити вертикальне відео у Vimeo" onclick="window.location.href='https://vimeo.com/1186197729'; return false;">▶ Відкрити відео</a>
 
   <header class="topbar">
     <div class="topbar-inner">
@@ -1431,6 +1938,7 @@
           </div>
         </article></div>
       </section>
+
       <!-- 12 / GEOGRAPHY -->
       <section class="section" id="s12" data-nav="Географія довіри">
         <div class="wrap"><article class="slide alt" data-watermark="1" data-lighthouse="1">
@@ -1820,53 +2328,27 @@
 
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const clamp = (n,min,max) => Math.max(min, Math.min(max,n));
-     // Vimeo global video — desktop unchanged, mobile fixed for Android + iPhone
-const VIMEO_VIDEO_ID = '1186197729';
-const VIMEO_DIRECT_URL = `https://vimeo.com/${VIMEO_VIDEO_ID}`;
-const VIMEO_EMBED_URL = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&controls=0&dnt=1`;
+      // Vimeo global video: paste either a full Vimeo link or only the numeric video ID.
+      const VIMEO_VIDEO_SOURCE = '1186197729';
+      const vimeoFrame = document.getElementById('vimeoGlobalVideo');
+      const vimeoBox = document.querySelector('.global-video');
+      function getVimeoId(source){
+        if(!source || source === 'VIMEO_VIDEO_SOURCE') return '';
+        const text = String(source).trim();
+        const embedMatch = text.match(/player\.vimeo\.com\/video\/(\d+)/);
+        if(embedMatch) return embedMatch[1];
+        const urlMatch = text.match(/vimeo\.com\/(?:.*\/)?(\d+)/);
+        if(urlMatch) return urlMatch[1];
+        const idMatch = text.match(/^\d+$/);
+        return idMatch ? idMatch[0] : '';
+      }
+      const VIMEO_VIDEO_ID = getVimeoId(VIMEO_VIDEO_SOURCE);
+      if (vimeoFrame && VIMEO_VIDEO_ID){
+        vimeoFrame.src = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?badge=0&autopause=0&autoplay=1&muted=1&loop=1&playsinline=1&title=0&byline=0&portrait=0&controls=0&dnt=1`;
+        vimeoFrame.addEventListener('load', () => { if (vimeoBox) vimeoBox.classList.add('is-loaded'); });
+      }
 
-const vimeoFrame = document.getElementById('vimeoGlobalVideo');
-const vimeoBox = document.querySelector('.global-video');
-const vimeoOpen = document.querySelector('.mobile-vimeo-open');
 
-function isMobileDevice(){
-  return window.matchMedia('(max-width: 860px)').matches;
-}
-
-function openVimeoMobile(event){
-  if (!isMobileDevice()) return;
-
-  event.preventDefault();
-  event.stopPropagation();
-
-  // iPhone Safari стабільніше відкриває через location.href, ніж через window.open
-  window.location.href = VIMEO_DIRECT_URL;
-}
-
-if (vimeoFrame) {
-  vimeoFrame.src = VIMEO_EMBED_URL;
-
-  const markVimeoLoaded = () => {
-    if (vimeoBox) vimeoBox.classList.add('is-loaded');
-  };
-
-  vimeoFrame.addEventListener('load', markVimeoLoaded);
-  setTimeout(markVimeoLoaded, 1400);
-}
-
-if (vimeoOpen) {
-  vimeoOpen.href = VIMEO_DIRECT_URL;
-  vimeoOpen.removeAttribute('target');
-
-  vimeoOpen.addEventListener('click', openVimeoMobile, false);
-  vimeoOpen.addEventListener('touchend', openVimeoMobile, false);
-}
-
-if (vimeoBox) {
-  vimeoBox.addEventListener('click', openVimeoMobile, false);
-  vimeoBox.addEventListener('touchend', openVimeoMobile, false);
-}
-}
 
       function setVhVar(){
         root.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
@@ -1877,29 +2359,16 @@ if (vimeoBox) {
         deckEl.style.transform = `translate3d(0, -${idx * slideHeight()}px, 0)`;
         if(instant){ deckEl.getBoundingClientRect(); deckEl.style.transition = ''; }
       }
-      function formatCounter(n){
-        const value = Number(n);
-        return Number.isFinite(value) ? value.toLocaleString('uk-UA') : '0';
-      }
-      function readCounterConfig(el){
-        const raw = String(el.dataset.target || '0').trim();
-        const numericPart = raw.replace(/\s+/g, '').replace(/[^0-9.\-]/g, '');
-        const target = Number(numericPart || 0);
-        const rawSuffix = raw.replace(/[0-9\s.,\-]/g, '');
-        const suffix = el.dataset.suffix || rawSuffix || '';
-        return {
-          target: Number.isFinite(target) ? target : 0,
-          suffix
-        };
-      }
+      function formatCounter(n){ return Number(n).toLocaleString('uk-UA'); }
       function animateCounter(el){
-        const counterConfig = readCounterConfig(el);
+        const rawTarget = String(el.dataset.target || '0').replace(/[^0-9.-]/g, '');
+        const parsedTarget = Number(rawTarget);
+        const target = Number.isFinite(parsedTarget) ? parsedTarget : 0;
+        const suffix = el.dataset.suffix || '';
         if(prefersReduced){
-          el.textContent = formatCounter(counterConfig.target) + counterConfig.suffix;
+          el.textContent = formatCounter(target) + suffix;
           return;
         }
-        const target = counterConfig.target;
-        const suffix = counterConfig.suffix;
         const duration = 1100;
         const start = performance.now();
         function step(now){
@@ -2078,6 +2547,34 @@ if (vimeoBox) {
       });
 
 
+
+
+
+      // Final mobile Vimeo opener — iPhone/Android safe, desktop untouched.
+      (function setupReliableMobileVimeoOpen(){
+        const directVimeoUrl = 'https://vimeo.com/1186197729';
+        const mobileOpeners = Array.from(document.querySelectorAll('.mobile-vimeo-open, .mobile-vimeo-fixed-button'));
+
+        function isMobileViewport(){
+          return window.matchMedia('(max-width: 860px)').matches;
+        }
+
+        function openDirectVimeo(event){
+          if(!isMobileViewport()) return;
+          event.preventDefault();
+          event.stopPropagation();
+          if(typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
+          window.location.assign(directVimeoUrl);
+        }
+
+        mobileOpeners.forEach((opener) => {
+          opener.setAttribute('href', directVimeoUrl);
+          opener.setAttribute('target', '_self');
+          opener.setAttribute('rel', 'noopener noreferrer');
+          opener.addEventListener('click', openDirectVimeo, {capture:true});
+          opener.addEventListener('touchend', openDirectVimeo, {capture:true, passive:false});
+        });
+      })();
 
       // Auto-rotating stacked photo gallery
       const autoStacks = Array.from(document.querySelectorAll('.auto-stack'));
